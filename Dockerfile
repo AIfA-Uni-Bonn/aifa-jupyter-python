@@ -27,3 +27,7 @@ RUN conda install nbgrader --yes
 # More info at https://rise.readthedocs.io
 # Note: Installing RISE with --no-deps because all the neeeded deps are already present.
 RUN conda install rise --no-deps --yes
+
+
+# Add the science packages for AIfA
+RUN conda install numpy scipy astropy sympy --yes 
