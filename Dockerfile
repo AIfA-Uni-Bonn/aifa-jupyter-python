@@ -31,3 +31,6 @@ RUN conda install rise --no-deps --yes
 
 # Add the science packages for AIfA
 RUN conda install numpy scipy astropy sympy --yes 
+
+
+RUN conda install matplotlib scikit-image scikit-learn seaborn --yes
