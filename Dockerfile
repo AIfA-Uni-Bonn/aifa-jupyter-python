@@ -9,6 +9,9 @@ FROM jupyter/minimal-notebook:d4cbf2f80a2a
 # Do here all steps as root
 USER root
 
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod 755 /usr/local/bin/start.sh
+
 # switch back to jovyan to install conda packages
 
 USER $NB_UID
