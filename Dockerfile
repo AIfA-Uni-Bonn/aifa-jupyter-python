@@ -9,6 +9,9 @@ FROM jupyter/minimal-notebook:d4cbf2f80a2a
 # Do here all steps as root
 USER root
 
+RUN chgrp users /etc/passwd
+RUN echo "nbgrader:x:2000:" >> /etc/group
+
 # use this for debugging in the case of UID/GID problems
 #COPY start.sh /usr/local/bin/start.sh
 #RUN chmod 755 /usr/local/bin/start.sh
