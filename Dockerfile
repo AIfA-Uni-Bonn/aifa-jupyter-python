@@ -42,5 +42,4 @@ RUN conda install numpy matplotlib scipy astropy sympy --yes
 
 RUN conda install scikit-image scikit-learn seaborn --yes
 
-RUN mkdir /home/jovyan/.jupyter
-COPY nbgrader_config.py /home/jovyan/.jupyter/nbgrader_config.py
+COPY nbgrader_config.py /opt/conda/etc/jupyter/nbgrader_config.py
