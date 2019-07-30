@@ -30,6 +30,9 @@ USER $NB_UID
 RUN conda install nbgrader --yes
 
 
+# Add the notebook extensions
+RUN conda install jupyter_contrib_nbextensions --yes
+
 # Add RISE 5.4.1 to the mix as well so user can show live slideshows from their notebooks
 # More info at https://rise.readthedocs.io
 # Note: Installing RISE with --no-deps because all the neeeded deps are already present.
