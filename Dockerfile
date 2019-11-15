@@ -12,6 +12,11 @@ USER root
 RUN chgrp users /etc/passwd
 RUN echo "nbgrader:x:2000:" >> /etc/group
 
+
+# add additional Ubuntu packages
+RUN apt install openssh-client
+RUN apt clean
+
 # use this for debugging in the case of UID/GID problems
 #COPY start.sh /usr/local/bin/start.sh
 #RUN chmod 755 /usr/local/bin/start.sh
@@ -23,6 +28,8 @@ USER $NB_UID
 
 # The conda-forge channel is already present in the system .condarc file, so there is no need to
 # add a channel invocation in any of the next commands.
+
+
 
 # Add nbgrader 0.5.5 to the image
 # More info at https://nbgrader.readthedocs.io/en/stable/
@@ -41,8 +48,14 @@ RUN conda install rise --no-deps --yes
 
 # Add the science packages for AIfA
 RUN conda install numpy matplotlib scipy astropy sympy --yes 
-
-
 RUN conda install scikit-image scikit-learn seaborn --yes
+
+# Add the interactive matplotlib extension
+RUN conda install -y nodejs --yes
+RUN pip install ipympl
+#pip install --upgrade jupyterlab
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter labextension install jupyter-matplotlib
+RUN jupyter nbextension enable --py widgetsnbextension
 
 COPY nbgrader_config.py /etc/jupyter/nbgrader_config.py
