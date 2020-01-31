@@ -13,6 +13,9 @@ USER root
 RUN chgrp users /etc/passwd
 RUN echo "nbgrader:x:2000:" >> /etc/group
 
+# necessary for apt-key
+RUN apt update
+RUN apt install gnupg2
 
 # add ownloud
 RUN sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_18.04/ /' > /etc/apt/sources.list.d/isv:ownCloud:desktop.list"
@@ -21,6 +24,7 @@ RUN wget -nv https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubu
 RUN apt-key add - < Release.key
 
 # add additional Ubuntu packages
+RUN apt update
 RUN apt install openssh-client latexmk owncloud-client
 RUN apt clean
 
