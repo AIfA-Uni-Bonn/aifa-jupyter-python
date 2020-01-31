@@ -1,4 +1,5 @@
 # written: 2019-06-18
+# changed: 2020-01-31
 
 # taking the latest image
 FROM jupyter/minimal-notebook:d4cbf2f80a2a 
@@ -13,8 +14,14 @@ RUN chgrp users /etc/passwd
 RUN echo "nbgrader:x:2000:" >> /etc/group
 
 
+# add ownloud
+RUN sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_18.04/ /' > /etc/apt/sources.list.d/isv:ownCloud:desktop.list"
+RUN wget -nv https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_18.04/Release.key -O Release.key
+s
+RUN apt-key add - < Release.key
+
 # add additional Ubuntu packages
-RUN apt install openssh-client
+RUN apt install openssh-client latexmk owncloud-client owncloud-client-cmd
 RUN apt clean
 
 # use this for debugging in the case of UID/GID problems
