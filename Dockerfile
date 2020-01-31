@@ -21,7 +21,7 @@ s
 RUN apt-key add - < Release.key
 
 # add additional Ubuntu packages
-RUN apt install openssh-client latexmk owncloud-client owncloud-client-cmd
+RUN apt install openssh-client latexmk owncloud-client
 RUN apt clean
 
 # use this for debugging in the case of UID/GID problems
