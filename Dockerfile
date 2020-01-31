@@ -17,7 +17,7 @@ RUN echo "nbgrader:x:2000:" >> /etc/group
 # add ownloud
 RUN sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_18.04/ /' > /etc/apt/sources.list.d/isv:ownCloud:desktop.list"
 RUN wget -nv https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_18.04/Release.key -O Release.key
-s
+
 RUN apt-key add - < Release.key
 
 # add additional Ubuntu packages
