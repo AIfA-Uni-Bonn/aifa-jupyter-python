@@ -15,7 +15,7 @@ RUN echo "nbgrader:x:2000:" >> /etc/group
 
 # necessary for apt-key
 RUN apt update
-RUN apt install gnupg2
+RUN apt-get install -y gnupg2
 
 # add ownloud
 RUN sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_18.04/ /' > /etc/apt/sources.list.d/isv:ownCloud:desktop.list"
@@ -25,7 +25,7 @@ RUN apt-key add - < Release.key
 
 # add additional Ubuntu packages
 RUN apt update
-RUN apt install openssh-client latexmk owncloud-client
+RUN apt-get install -y openssh-client latexmk owncloud-client
 RUN apt clean
 
 # use this for debugging in the case of UID/GID problems
